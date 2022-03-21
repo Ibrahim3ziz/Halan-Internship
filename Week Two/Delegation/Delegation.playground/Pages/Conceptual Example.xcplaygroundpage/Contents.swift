@@ -39,14 +39,14 @@ class LoginViewModel {
 }
 
 extension LoginViewModel {
-    
+
     convenience init(networkManager: NetworkManagerProtocol) {
-        self.networkManager = networkManager as? NetworkManager
+        self.networkManager = networkManager
     }
 }
 
 let loginViewModel = LoginViewModel()
-loginViewModel.networkManager = NetworkManager
+loginViewModel.networkManager = NetworkManager()
 
 
 
@@ -61,7 +61,7 @@ class NetworkManager: NetworkManagerProtocol {
 
 class NetworkManagerMock: NetworkManagerProtocol {
     func login(username: String, password: String, completion: @escaping (Data, Error) -> Void) {
-        completion(nil, error)
+//        completion(nil, error)
     }
     
     

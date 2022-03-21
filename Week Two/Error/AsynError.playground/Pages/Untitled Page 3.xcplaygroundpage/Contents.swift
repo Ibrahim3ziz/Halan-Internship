@@ -3,6 +3,9 @@ import UIKit
 import Foundation
 import PlaygroundSupport
 
+enum NetworkError: Error {
+    case fetchFailed(Error)
+}
 
 
 extension Swift.Result {
@@ -19,9 +22,10 @@ extension Swift.Result {
     
 }
 
-func callURL(url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
-    let task = URLSession.shared.dataTask(with: url) { data, response, error in
-        
-    }
+func callURL(url: URL, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+        let dataTaskError = error.map { NetworkError.fetchFailed($0)}
+        let result = Result<Data, NetworkError>(value: data, error: dataTaskError)
+    })
     task.resume()
 }

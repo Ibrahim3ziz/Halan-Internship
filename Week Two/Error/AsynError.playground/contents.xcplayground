@@ -4,5 +4,7 @@
         <page name='Untitled Page 2'/>
         <page name='Result'/>
         <page name='Untitled Page 3'/>
+        <page name='HigherAPI'/>
+        <page name='mapping'/>
     </pages>
 </playground>
